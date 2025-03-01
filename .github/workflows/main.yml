@@ -34,4 +34,4 @@ jobs:
       # Step 3: Copy directory to VPS using rsync
       - name: Copy files to VPS
         run: |
-          rsync -avz --delete ./public akash@207.154.211.55:/home/akash/apps/website/
+          rsync -avz --delete ./public akash@untilfalse.com:/home/akash/apps/website/
