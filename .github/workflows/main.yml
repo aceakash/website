@@ -24,3 +24,14 @@ jobs:
 
       # Step 4: Run your npm script (replace 'build' with your script name)
       - run: npm run build
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      # Step 3: Copy directory to VPS using rsync
+      - name: Copy files to VPS
+        run: |
+          rsync -avz --delete ./public akash@207.154.211.55:/home/akash/apps/website/
