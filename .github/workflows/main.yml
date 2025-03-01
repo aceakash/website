@@ -27,11 +27,12 @@ jobs:
 
       - name: Set up SSH
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/untilfalse_github_action_id_ed25519
-          chmod 600 ~/.ssh/untilfalse_github_action_id_ed25519
+          mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts
+          ssh-keyscan untilfalse.com >> ~/.ssh/known_hosts
+          eval $(ssh-agent)
+          ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
 
       # Step 3: Copy directory to VPS using rsync
       - name: Copy files to VPS
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/untilfalse_github_action_id_ed25519" --delete ./public akash@untilfalse.com:/home/akash/apps/website/
+          rsync -avz --delete ./public akash@untilfalse.com:/home/akash/apps/website/
