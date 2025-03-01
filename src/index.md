@@ -3,4 +3,4 @@ title: Hello World
 layout: "base.njk"
 ---
 
-Hello, world!!!
+Hello, world 🌎
