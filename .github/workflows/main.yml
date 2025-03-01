@@ -28,8 +28,8 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/untilfalse_github_action_id_ed25519
+          chmod 600 ~/.ssh/untilfalse_github_action_id_ed25519
 
       # Step 3: Copy directory to VPS using rsync
       - name: Copy files to VPS
