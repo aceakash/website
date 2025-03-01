@@ -25,14 +25,15 @@ jobs:
       # Step 4: Run your npm script (replace 'build' with your script name)
       - run: npm run build
 
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts
-          ssh-keyscan untilfalse.com >> ~/.ssh/known_hosts
-          eval $(ssh-agent)
-          ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
+      
 
-      # Step 3: Copy directory to VPS using rsync
-      - name: Copy files to VPS
-        run: |
-          rsync -avz --delete ./public akash@untilfalse.com:/home/akash/apps/website/
+      # Step 5: Copy directory to VPS
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          source: "public"
+          target: "/home/akash/apps/website/"
