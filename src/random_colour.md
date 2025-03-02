@@ -2,7 +2,7 @@
 title: Random colour
 layout: base.njk
 ---
-<h1 id="message">Hello hello!</h1>
+<h1 id="message" style="text-align: center; font-size: 4em">Hello there!</h1>
 
 <script>
 function getRandomColor() {
