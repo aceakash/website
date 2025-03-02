@@ -14,6 +14,11 @@ function getRandomColor() {
   return color;
 }
 
-document.getElementById('message').style.color = getRandomColor();
-document.body.style.backgroundColor = getRandomColor();
+function changeColors() {
+    document.getElementById('message').style.color = getRandomColor();
+    document.body.style.backgroundColor = getRandomColor();
+}
+
+window.setInterval(changeColors, 3000)
+
 </script>
